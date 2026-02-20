@@ -1,0 +1,66 @@
+---
+title: Open SourceCraft
+timezone: America/New_York
+collections:
+  episodes:
+    title: Episodes
+    output: true
+    permalink: "/episodes/:path/"
+  posts:
+    title: Posts
+    output: true
+  uploads:
+    title: Uploads
+    output: true
+defaults:
+- scope:
+    path: ''
+    type: episodes
+  values:
+    layout: episode
+    excerpt: ''
+    episode_number: ''
+    feature_image: ''
+    audio_embed: ''
+    video_embed: ''
+    show_tell_embed: ''
+    notes_text: ''
+email: gregg@codepop.com
+description: 'The world runs on Open Source Software.  We speak to the people who
+  shape our world.
+
+'
+baseurl: "/open-sourcecraft"
+url: 
+google_analytics: UA-90157003-1
+follow:
+- source: Facebook
+  username: opensourcecraft
+- source: Twitter
+  username: osourcecraft
+- source: Instagram
+  username: opensourcecraft
+subscribe:
+  video:
+  - source: YouTube
+    url: https://www.youtube.com/channel/UCa1zuotKU4Weuw_fLRnPv0A
+  audio:
+  - source: iTunes
+    url: https://itunes.apple.com/us/podcast/open-sourcecraft-audio/id1205703955
+  - source: Stitcher
+    url: http://www.stitcher.com/s?fid=130883&refid=stpr
+  - source: Rss
+    url: https://oscaudio.podbean.com/feed/
+markdown: kramdown
+paginate: 2
+sass:
+  style: compressed
+gems:
+- jekyll-feed
+- jekyll-sitemap
+- jekyll-paginate
+exclude:
+- Gemfile
+- Gemfile.lock
+- package.json
+- node_modules

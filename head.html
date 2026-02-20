@@ -1,0 +1,53 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title and page.title != 'Home' %}{{ page.title | escape }} | {{site.title | escape}}{% else %}
+		{{ site.title | escape }}{% endif %}</title>
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+	<meta name="keywords" content="{% if page.tags %}{{page.tags | join: ', '}}{% endif%}">
+
+	 <link rel="icon" type="image/x-icon" href="{{ site.baseurl }}/images/favicon.ico">
+	 <!-- <link rel="mask-icon" href="{{ site.baseurl }}/images/pinned-orange.svg" color="#F3715D"> -->
+	<!-- Styles -->
+	<link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,800|Yantramanav:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
+
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
+
+
+
+  {% if page.id == 'home' %}
+    {% assign sort_episodes = site.episodes | sort: 'episode_number' | reverse %}
+    {% for episode in sort_episodes limit: 1 %}
+    {% assign page_image = episode.feature_image | prepend: site.baseurl | prepend: site.url %}
+    {% endfor %}
+  {% else %}
+    {% assign page_image = page.feature_image | prepend: site.baseurl | prepend: site.url %}
+  {% endif %}
+
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@{{ site.follow[2].username }}">
+	<meta name="twitter:domain" content="{{ site.url }}{{ page.url | prepend: site.baseurl }}">
+	<meta name="twitter:creator" content="@{{ site.follow[2].username }}">
+	<meta name="twitter:title" content="{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}">
+  <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="twitter:image" content="{{ page_image }}">
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{ site.url }}{{ page.url | prepend: site.baseurl }}" />
+  <meta property="og:title" content="{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}" />
+  <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}" />
+  <meta property="og:image" content="{{ page_image }}" />
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="{{ site.title | escape }}">
+
+  <link type="application/rss+xml" rel="alternate" href="{{ "feed.xml" | prepend: site.baseurl}}" title="{{ site.title | escape }}">
+
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+  {% include analytics.html %}
+
+</head>

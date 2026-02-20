@@ -1,0 +1,36 @@
+---
+layout: default
+---
+
+<article class="article-container">
+  {% if page.youtube_embed %}
+    {% if page.is_live == true %}
+      <div class="frame-wrapper">
+        <iframe src="{{ page.youtube_embed }}" frameborder="0" allowfullscreen></iframe>
+      </div>
+    {% endif %}
+  {% endif %}
+  <div class="episode-article js-target-blank">
+    <h1>{{ page.title }}</h1>
+
+    {% if page.faqs %}
+      {% assign faq_count = 0 %}
+      {% for faq in page.faqs %}
+        {% capture faq_count %}{% increment i %}{% endcapture %}
+        <section class="collapse-content">
+          <h3 class="title">{{ faq.question }}</h3>
+          <section id="faq_{{ faq_count }}" class="body _is-closed">
+            {{ faq.answer | markdownify }}
+          </section>
+          <a class="button -primary _with-icon toggle" href="#faq_{{ faq_count }}" data-toggle="collapse">
+            <svg class="icon _mini"><use xlink:href="#ico-arrow-right-sq" /></svg>
+            Show answer
+          </a>
+        </section>
+      {% endfor %}
+    {% endif %}
+
+    {{content}}
+
+  </div>
+</article>
